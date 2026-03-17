@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ExamPage from './pages/ExamPage';
 import ResultPage from './pages/ResultPage';
 import './App.css';
-
+// deploy trigger
 function App() {
   const [page, setPage] = useState('home');
   const [result, setResult] = useState(null);
