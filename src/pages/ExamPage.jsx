@@ -48,7 +48,7 @@ const ExamPage = ({ onFinish }) => {
         if (isSubmitting) return;
         setIsSubmitting(true);
         try {
-            const resultData = await submitExamData(answers, questions.length);
+            const resultData = await submitExamData(answers, questions);
             onFinish(resultData);
         } catch (err) {
             setError('Failed to submit exam. Please try again.');
@@ -73,23 +73,23 @@ const ExamPage = ({ onFinish }) => {
                 <Timer durationMinutes={30} onTimeUp={handleTimeUp} />
             </div>
 
-            <QuestionCard 
-                question={currentQuestion} 
-                currentNumber={currentIndex + 1} 
-                totalQuestions={questions.length} 
-                selectedOption={answers[currentQuestion._id]} 
-                onSelectOption={handleSelectOption} 
+            <QuestionCard
+                question={currentQuestion}
+                currentNumber={currentIndex + 1}
+                totalQuestions={questions.length}
+                selectedOption={answers[currentQuestion._id]}
+                onSelectOption={handleSelectOption}
             />
 
             <div className="question-controls">
-                <button 
-                    className="btn-secondary" 
-                    onClick={handlePrev} 
+                <button
+                    className="btn-secondary"
+                    onClick={handlePrev}
                     disabled={currentIndex === 0}
                 >
                     Previous
                 </button>
-                
+
                 {currentIndex < questions.length - 1 ? (
                     <button className="btn-primary" onClick={handleNext}>Next</button>
                 ) : (
@@ -98,7 +98,7 @@ const ExamPage = ({ onFinish }) => {
                     </button>
                 )}
             </div>
-            
+
             {currentIndex < questions.length - 1 && (
                 <div style={{ marginTop: '30px', textAlign: 'center' }}>
                     <button className="btn-success" onClick={submitExam} disabled={isSubmitting}>
